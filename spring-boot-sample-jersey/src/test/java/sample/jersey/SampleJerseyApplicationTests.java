@@ -61,5 +61,14 @@ public class SampleJerseyApplicationTests {
 				.getForEntity("http://localhost:" + this.port + "/reverse", String.class);
 		assertEquals(HttpStatus.BAD_REQUEST, entity.getStatusCode());
 	}
+	
+	@Test
+	public void validaUser() {
+		ResponseEntity<User> entity = this.restTemplate
+				.getForEntity("http://localhost:" + this.port + "/user/get", User.class);
+		User user = entity.getBody();
+		assertEquals(user.getName(), "Eduardo");
+		assertEquals(user.getLastName(), "Wallace");
+	}
 
 }
